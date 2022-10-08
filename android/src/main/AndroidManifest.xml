@@ -1,0 +1,19 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.hw.agile.token.provider.token_provider">
+
+    <application>
+        <provider
+            android:name="com.hw.agile.token.provider.token_provider.TokenProvider"
+            android:authorities="com.hw.agile.token.provider.token_provider.TokenProvider"
+            android:readPermission="smartfactory.permission.READ_TOKEN"
+            android:enabled="true"
+            android:exported="true" />
+    </application>
+
+    <permission
+        android:name="smartfactory.permission.READ_TOKEN"
+        android:label="Read token"
+        android:protectionLevel="normal"
+        tools:ignore="ManifestOrder" />
+</manifest>
