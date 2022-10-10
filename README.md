@@ -4,9 +4,9 @@ This plugin support share token inside SmartFactory system
 
 ## Usage
 
-###Add this to AndroidManifest.xml
+### Add this to AndroidManifest.xml
 
-####Host app (Smart Factory):
+#### Host app (Smart Factory):
 
 ```xml
 <manifest>
@@ -28,7 +28,7 @@ This plugin support share token inside SmartFactory system
 ```
 
 
-####Consumer app (OPPM, ESD, Paperless,...etc):
+#### Consumer app (OPPM, ESD, Paperless,...etc):
 
 ```xml
 <manifest>
