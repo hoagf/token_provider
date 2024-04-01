@@ -21,4 +21,17 @@ class MethodChannelTokenProvider extends TokenProviderPlatform {
         await methodChannel.invokeMethod<bool>('saveToken', {'token': token});
     return result;
   }
+
+  @override
+  Future<String?> getData() async {
+    final data = await methodChannel.invokeMethod<String>('getData');
+    return data;
+  }
+
+  @override
+  Future<bool?> saveData(String data) async {
+    final result =
+    await methodChannel.invokeMethod<bool>('saveData', {'data': data});
+    return result;
+  }
 }

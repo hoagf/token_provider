@@ -8,4 +8,12 @@ class TokenProvider {
   Future<bool?> saveToken(String token) {
     return TokenProviderPlatform.instance.saveToken(token);
   }
+
+  Future<String?> getData() {
+    return TokenProviderPlatform.instance.getData();
+  }
+
+  Future<bool?> saveData(String data) {
+    return TokenProviderPlatform.instance.saveData(data);
+  }
 }

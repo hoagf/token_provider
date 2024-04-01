@@ -44,6 +44,27 @@ class TokenProviderPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
         }
     }
 
+    private fun saveData(data: String?) {
+        val uri = Uri.parse(TokenProviderConstants.URI)
+        val cr = context!!.contentResolver
+        val auth = TokenProviderConstants.AUTHORITY
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            cr.call(
+                auth,
+                TokenProviderConstants.SAVE_DATA_METHOD,
+                data,
+                null
+            )
+        } else {
+            cr.call(
+                uri,
+                TokenProviderConstants.SAVE_DATA_METHOD,
+                data,
+                null
+            )
+        }
+    }
+
     private val token: String?
         get() {
             val uri = Uri.parse(TokenProviderConstants.URI)
@@ -55,6 +76,19 @@ class TokenProviderPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
                 cr.call(uri, TokenProviderConstants.GET_TOKEN_METHOD, null, null)
             }
             return if (bundle != null) bundle.getString(TokenProviderConstants.TOKEN_KEY) else ""
+        }
+
+    private val data: String?
+        get() {
+            val uri = Uri.parse(TokenProviderConstants.URI)
+            val cr = context!!.contentResolver
+            val auth = TokenProviderConstants.AUTHORITY
+            val bundle: Bundle? = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                cr.call(auth, TokenProviderConstants.GET_DATA_METHOD, null, null)
+            } else {
+                cr.call(uri, TokenProviderConstants.GET_DATA_METHOD, null, null)
+            }
+            return if (bundle != null) bundle.getString(TokenProviderConstants.DATA_KEY) else ""
         }
 
     override fun onMethodCall(call: MethodCall, result: MethodChannel.Result) {
@@ -72,6 +106,22 @@ class TokenProviderPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
                     result.success(true)
                 } catch (e: Exception) {
                     result.error("ERROR", "Save token error", e)
+                }
+            }
+
+            "getData" -> {
+                try {
+                    result.success(data)
+                } catch (e: Exception) {
+                    result.error("ERROR", "Get data error", e)
+                }
+            }
+            "saveData" -> {
+                try {
+                    saveData(call.argument("data"))
+                    result.success(true)
+                } catch (e: Exception) {
+                    result.error("ERROR", "Save data error", e)
                 }
             }
         }

@@ -30,4 +30,12 @@ abstract class TokenProviderPlatform extends PlatformInterface {
   Future<bool?> saveToken(String token) {
     throw UnimplementedError('getToken() has not been implemented.');
   }
+
+  Future<String?> getData() {
+    throw UnimplementedError('getData() has not been implemented.');
+  }
+
+  Future<bool?> saveData(String data) {
+    throw UnimplementedError('saveData() has not been implemented.');
+  }
 }

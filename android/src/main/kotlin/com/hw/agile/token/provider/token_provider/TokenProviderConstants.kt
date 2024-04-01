@@ -10,5 +10,9 @@ class TokenProviderConstants {
 
         const val SAVE_TOKEN_METHOD = "getTokenMethod"
         const val GET_TOKEN_METHOD = "saveTokenMethod"
+
+        const val DATA_KEY = "___fii_data_key___"
+        const val SAVE_DATA_METHOD = "getDataMethod"
+        const val GET_DATA_METHOD = "saveDataMethod"
     }
 }

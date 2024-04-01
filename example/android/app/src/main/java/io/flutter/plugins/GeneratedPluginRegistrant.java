@@ -17,7 +17,7 @@ public final class GeneratedPluginRegistrant {
   public static void registerWith(@NonNull FlutterEngine flutterEngine) {
     try {
       flutterEngine.getPlugins().add(new com.hw.agile.token.provider.token_provider.TokenProviderPlugin());
-    } catch(Exception e) {
+    } catch (Exception e) {
       Log.e(TAG, "Error registering plugin token_provider, com.hw.agile.token.provider.token_provider.TokenProviderPlugin", e);
     }
   }

@@ -68,6 +68,14 @@ class TokenProvider : ContentProvider() {
             TokenProviderConstants.SAVE_TOKEN_METHOD -> {
                 putStringPreference(arg ?: "")
             }
+
+            TokenProviderConstants.GET_DATA_METHOD -> {
+                val str: String = getDataStringPreference()
+                bundle.putString(TokenProviderConstants.DATA_KEY, str)
+            }
+            TokenProviderConstants.SAVE_DATA_METHOD -> {
+                putDataStringPreference(arg ?: "")
+            }
         }
 
         return bundle
@@ -84,6 +92,24 @@ class TokenProvider : ContentProvider() {
         with(prefs.edit()) {
             putString(
                 TokenProviderConstants.TOKEN_KEY,
+                str
+            )
+            commit()
+        }
+    }
+
+
+    private fun getDataStringPreference(): String {
+        return prefs.getString(
+            TokenProviderConstants.DATA_KEY,
+            ""
+        ) ?: ""
+    }
+
+    private fun putDataStringPreference(str: String) {
+        with(prefs.edit()) {
+            putString(
+                TokenProviderConstants.DATA_KEY,
                 str
             )
             commit()
